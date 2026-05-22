@@ -41,49 +41,26 @@ export function TradesList({ trades }: Props) {
             </tr>
           </thead>
           <tbody>
-            {trades.map((t, i) => (
-              <tr
-                key={`${t.txHash}-${i}`}
-                className="border-b border-ink-700 hover:bg-ink-700/50 transition-colors"
-              >
-                <td className="px-6 py-3 text-zinc-500 font-mono tnum text-xs whitespace-nowrap">
-                  {fmtTime(t.timestamp)}
-                </td>
-                <td className="px-2 py-3 max-w-xs">
-                  
-                    href={`https://polymarket.com/event/${t.eventSlug}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-zinc-200 hover:text-accent truncate block"
-                    title={t.title}
-                  >
-                    {t.title}
-                  </a>
-                  <span className="text-xs text-zinc-600">{t.outcome}</span>
-                </td>
-                <td className="px-2 py-3">
-                  <span
-                    className={`text-xs font-mono px-2 py-0.5 rounded ${
-                      t.side === "BUY"
-                        ? "bg-emerald-500/10 text-emerald-400"
-                        : "bg-rose-500/10 text-rose-400"
-                    }`}
-                  >
-                    {t.side}
-                  </span>
-                </td>
-                <td className="px-2 py-3 text-zinc-500 text-xs">{t.category}</td>
-                <td className="px-2 py-3 text-right font-mono tnum text-zinc-300">
-                  {(t.price * 100).toFixed(1)}¢
-                </td>
-                <td className="px-2 py-3 text-right font-mono tnum text-zinc-300">
-                  {fmtUsd(t.tradeSizeUsd)}
-                </td>
-                <td className="px-6 py-3 text-right font-mono tnum text-zinc-100">
-                  {fmtUsd(t.wV)}
-                </td>
-              </tr>
-            ))}
+            {trades.map((t, i) => {
+              const sideClass = t.side === "BUY" ? "bg-emerald-500/10 text-emerald-400" : "bg-rose-500/10 text-rose-400";
+              const marketUrl = `https://polymarket.com/event/${t.eventSlug}`;
+              return (
+                <tr key={`${t.txHash}-${i}`} className="border-b border-ink-700 hover:bg-ink-700/50 transition-colors">
+                  <td className="px-6 py-3 text-zinc-500 font-mono tnum text-xs whitespace-nowrap">{fmtTime(t.timestamp)}</td>
+                  <td className="px-2 py-3 max-w-xs">
+                    <a href={marketUrl} target="_blank" rel="noopener noreferrer" className="text-zinc-200 hover:text-accent truncate block" title={t.title}>{t.title}</a>
+                    <span className="text-xs text-zinc-600">{t.outcome}</span>
+                  </td>
+                  <td className="px-2 py-3">
+                    <span className={`text-xs font-mono px-2 py-0.5 rounded ${sideClass}`}>{t.side}</span>
+                  </td>
+                  <td className="px-2 py-3 text-zinc-500 text-xs">{t.category}</td>
+                  <td className="px-2 py-3 text-right font-mono tnum text-zinc-300">{(t.price * 100).toFixed(1)}¢</td>
+                  <td className="px-2 py-3 text-right font-mono tnum text-zinc-300">{fmtUsd(t.tradeSizeUsd)}</td>
+                  <td className="px-6 py-3 text-right font-mono tnum text-zinc-100">{fmtUsd(t.wV)}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
