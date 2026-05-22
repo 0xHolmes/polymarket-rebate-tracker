@@ -14,7 +14,6 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Pull initial address from URL hash so traders can share a link
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "").trim();
     if (/^0x[a-fA-F0-9]{40}$/.test(hash)) {
@@ -50,25 +49,17 @@ export default function Home() {
     <main className="min-h-screen px-4 sm:px-8 py-12 max-w-6xl mx-auto">
       <header className="mb-12 animate-fade-up">
         <div className="flex items-baseline gap-3 mb-2">
-          <span
-            className="inline-block w-2 h-2 rounded-full bg-accent animate-pulse-slow"
-            aria-hidden
-          />
+          <span className="inline-block w-2 h-2 rounded-full bg-accent animate-pulse-slow" aria-hidden />
           <span className="text-xs uppercase tracking-[0.3em] text-zinc-500">
             Polymarket · Taker Tier Tracker
           </span>
         </div>
         <h1 className="font-display text-5xl sm:text-7xl font-light leading-[0.95] mt-4 max-w-3xl">
-          Track your{" "}
-          <span className="italic" style={{ color: "#E5B649" }}>
-            rebate
-          </span>{" "}
-          in real time.
+          Track your <span className="italic" style={{ color: "#E5B649" }}>rebate</span> in real time.
         </h1>
         <p className="text-zinc-400 mt-6 max-w-xl leading-relaxed">
           The Taker Rebate Program is live on Polymarket starting Thursday, May 29, 2026. Enter any
-          wallet address to see its 30-day Weighted Volume, current tier, and how far it is from
-          the next.
+          wallet address to see its 30-day Weighted Volume, current tier, and how far it is from the next.
         </p>
       </header>
 
@@ -119,32 +110,17 @@ export default function Home() {
       <footer className="mt-20 pt-8 border-t border-ink-700 text-xs text-zinc-600 flex flex-wrap justify-between gap-3">
         <p>
           Reads from{" "}
-          
-            href="https://docs.polymarket.com/api-reference/core/get-trades-for-a-user-or-markets"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-zinc-400 underline underline-offset-2"
-          >
+          <a href="https://docs.polymarket.com/api-reference/core/get-trades-for-a-user-or-markets" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 underline underline-offset-2">
             data-api.polymarket.com
           </a>{" "}
           and{" "}
-          
-            href="https://gamma-api.polymarket.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-zinc-400 underline underline-offset-2"
-          >
+          <a href="https://gamma-api.polymarket.com" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 underline underline-offset-2">
             gamma-api.polymarket.com
           </a>
           . No data is stored.
         </p>
         <p>
-          
-            href="https://docs.polymarket.com/trading/taker-rebates"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-zinc-400 underline underline-offset-2"
-          >
+          <a href="https://docs.polymarket.com/trading/taker-rebates" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-400 underline underline-offset-2">
             Program docs ↗
           </a>
         </p>
